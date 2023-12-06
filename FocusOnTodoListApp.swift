@@ -1,4 +1,5 @@
 import SwiftUI
+import UserNotifications
 
 @main
 struct YourAppNameApp: App {
@@ -45,6 +46,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         NSApp.windows.first?.orderOut(nil)
         NSApp.setActivationPolicy(.accessory)
+
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) { _, _ in
+        }
+    }
+
+    func showNotification() {
+        let content = UNMutableNotificationContent()
+        content.title = "FocusOnTodoList"
+        content.body = "Focus On " + String(userData.selectedTime) + " Minutes"
+        content.sound = UNNotificationSound.default
+
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        let request = UNNotificationRequest(identifier: "FocusOnNotificationIdentifier", content: content, trigger: trigger)
+
+        UNUserNotificationCenter.current().add(request) { error in
+            if let error = error {
+                print("Notification Error: \(error)")
+            }
+        }
     }
 
     func applicationDidBecomeActive(_ notification: Notification) {

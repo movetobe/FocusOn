@@ -9,11 +9,19 @@ struct OnedayTotalRecView: View {
         VStack {
             //ZStack(alignment: .bottom) {
             ZStack(alignment: .leading) {
-                Rectangle()
-                //.frame(width: 78, height: (Double(totalCountdownSeconds) * Utils.rectH) / Double(selectedTimeInSeconds()))
-                    .frame(width: (Double(totalCountdownSeconds) * (Utils.rectW - 2 * Utils.lineWidth)) / Double(selectedTimeInSeconds()), height: Utils.rectH - 2 * Utils.lineWidth)
-                    .foregroundColor(Utils.color.opacity(0.5))
-                    .offset(x: Utils.lineWidth)
+                if (totalCountdownSeconds < selectedTimeInSeconds()) {
+                    Rectangle()
+                    //.frame(width: 78, height: (Double(totalCountdownSeconds) * Utils.rectH) / Double(selectedTimeInSeconds()))
+                        .frame(width: (Double(totalCountdownSeconds) * (Utils.rectW - 2 * Utils.lineWidth)) / Double(selectedTimeInSeconds()), height: Utils.rectH - 2 * Utils.lineWidth)
+                        .foregroundColor(Utils.color.opacity(0.5))
+                        .offset(x: Utils.lineWidth)
+                } else {
+                    Rectangle()
+                    //.frame(width: 78, height: (Double(totalCountdownSeconds) * Utils.rectH) / Double(selectedTimeInSeconds()))
+                        .frame(width: Utils.rectW - 2 * Utils.lineWidth, height: Utils.rectH - 2 * Utils.lineWidth)
+                        .foregroundColor(Utils.color.opacity(0.5))
+                        .offset(x: Utils.lineWidth)
+                }
                 HStack(spacing: -Utils.lineWidth) {
                     Rectangle()
                     //.frame(width: 80, height: Utils.rectH)

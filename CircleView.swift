@@ -130,6 +130,7 @@ struct CircleDividerView: View {
                         timer.invalidate()
                         resetCountdown()
                         showAlert = true
+                        AppDelegate().showNotification()
                     }
                 } else {
                     timer.invalidate()
