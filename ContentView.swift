@@ -10,7 +10,7 @@ struct ContentView: View {
                 Button(action: {
                     NSApp.terminate(self)
                 }) {
-                    Image(systemName: "arrow.right.square")
+                    Image(systemName: "xmark.square")
                 }
                 .buttonStyle(.borderless)
                 .foregroundColor(Utils.color)
@@ -24,12 +24,12 @@ struct ContentView: View {
             .onAppear {
                 updateTodayDate()
             }
-            HStack {
+            HStack(alignment: .bottom) {
                 CircleDividerView(currState: $userData.currState, selectedTime: $userData.selectedTime, totalCountdownSeconds: $userData.totalCountdownSeconds, totalCountdownEnd: $userData.totalCountdownEnd, selectedTarget: $userData.selectedTarget, countdownSeconds: $userData.countdownSeconds)
                     .frame(width: Utils.circleR, height: Utils.circleR)
                 Spacer()
                 OnedayTotalRecView(currState: $userData.currState, totalCountdownSeconds: $userData.totalCountdownSeconds, selectedTarget: $userData.selectedTarget)
-                    .frame(width: Utils.circleR, height: Utils.circleR)
+                    .frame(width: Utils.rectW, height: Utils.circleR)
             }
             .padding(Utils.paddingSize)
             .background(Utils.colorBG)
@@ -38,7 +38,7 @@ struct ContentView: View {
             TodoListView(todoItems: $userData.todoItems)
                 .background(Utils.colorBG)
                 .cornerRadius(Utils.cornerR)
-                .frame(width: Utils.circleR * 2 + Utils.paddingSize * 4)
+                .frame(width: Utils.circleR + Utils.rectW + Utils.paddingSize * 4)
 
         }
         .padding(Utils.paddingSize)

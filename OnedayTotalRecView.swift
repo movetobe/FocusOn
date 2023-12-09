@@ -50,6 +50,9 @@ struct OnedayTotalRecView: View {
                         .foregroundColor(Color.clear)
                 }
             }
+            
+            Text("Finished \(String(format: "%.1f", (Double(totalCountdownSeconds) / 3600))) H")
+                .foregroundColor(Utils.color)
         }
     }
     
