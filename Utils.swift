@@ -12,15 +12,18 @@ struct Utils {
     static let imageSize: CGFloat = 13
     static let colorBG = Color.white.opacity(0.2)
     //static let color = Color.orange.opacity(0.8)
-    static let color = Color(red: 0.2, green: 0.6, blue: 1.0)
+    //static let color = Color(red: 0.2, green: 0.6, blue: 1.0)
+    static let color = Color.black.opacity(0.8)
     static let colorBase = Color.gray.opacity(0.2)
     static let circleR = 100.0
     static let rectH = 60.0
-    static let rectW = 120.0
+    static let rectW = 110.0
     static let circlePointR = 45.0
     static let running = 1
     static let paused = 2
     static let reset = 3
     static let paddingSize = 8.0
     static let cornerR = 10.0
+    static let appName = "FocusOn"
+    static let version = " Version 0.0.1"
 }

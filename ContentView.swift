@@ -3,19 +3,26 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var userData: UserData
     @State private var todayDate: String = ""
+    @State private var isShowHelpView = false
 
     var body: some View {
         VStack {
             HStack {
-                Button(action: {
-                    NSApp.terminate(self)
-                }) {
-                    Image(systemName: "xmark.square")
+                MenuButton(label: Image(systemName: "gearshape")) {
+                    Button("About FocusOn") {
+                        isShowHelpView.toggle()
+                    }
+
+                    Button("Quit FocusOn") {
+                        NSApplication.shared.terminate(self)
+                    }
                 }
-                .buttonStyle(.borderless)
+                .menuButtonStyle(BorderlessButtonMenuButtonStyle())
+                .frame(width: Utils.imageSize)
                 .foregroundColor(Utils.color)
+
                 Spacer()
-                Text("FocusOnTodoList")
+                Text(Utils.appName)
                     .foregroundColor(Utils.color)
                 Spacer()
                 Text(todayDate)
@@ -42,6 +49,9 @@ struct ContentView: View {
 
         }
         .padding(Utils.paddingSize)
+        .popover(isPresented: $isShowHelpView, arrowEdge: .leading) {
+            HelpView(isShowHelpView: $isShowHelpView)
+        }
     }
     
     private func updateTodayDate() {
