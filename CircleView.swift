@@ -126,6 +126,7 @@ struct CircleDividerView: View {
                 if currState == Utils.running {
                     if countdownSeconds < selectedTimeInSeconds() {
                         countdownSeconds += 1
+                        //print("countdownSeconds = ", countdownSeconds)
                     } else {
                         timer.invalidate()
                         resetCountdown()

@@ -1,6 +1,13 @@
 
 import SwiftUI
 
+struct TodoItem: Identifiable,Codable {
+    var id = UUID()
+    var task: String
+    var isCompleted: Bool = false
+    var isEditing: Bool = false
+}
+
 struct TodoListView: View {
     @Binding var todoItems: [TodoItem]
     @State private var newTask: String = ""

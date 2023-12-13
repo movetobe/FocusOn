@@ -11,13 +11,6 @@ struct YourAppNameApp: App {
     }
 }
 
-struct TodoItem: Identifiable {
-    let id = UUID()
-    var task: String
-    var isCompleted: Bool = false
-    var isEditing: Bool = false
-}
-
 class UserData: ObservableObject {
     @Published var totalCountdownSeconds = 0
     @Published var selectedTime = 30
@@ -43,7 +36,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             button.image?.isTemplate = true
             button.action = #selector(togglePopover(_:))
         }
-        
+
+        // try to load data
+        loadAppData(userData: userData)
+        // if state is running in last quit, current state shall be set to pause
+        if userData.currState == Utils.running {
+            userData.currState = Utils.paused
+        }
         NSApp.windows.first?.orderOut(nil)
         NSApp.setActivationPolicy(.accessory)
 
@@ -97,5 +96,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     private func todayOver() -> Bool {
         return (Date() > userData.totalCountdownEnd) ? true : false
+    }
+
+    private func loadAppData(userData: UserData) {
+        guard let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("appData.json") else { return }
+
+        if let loadedData = AppDataStore.shared.loadData(from: fileURL) {
+            userData.totalCountdownSeconds = loadedData.totalCountdownSeconds
+            userData.selectedTime = loadedData.selectedTime
+            userData.selectedTarget = loadedData.selectedTarget
+            userData.currState = loadedData.currState
+            userData.countdownSeconds = loadedData.countdownSeconds
+            userData.todoItems = loadedData.todoItems
+            userData.showFocusOn = loadedData.showFocusOn
+            userData.showTodoList = loadedData.showTodoList
+            userData.totalCountdownEnd = loadedData.totalCountdownEnd
+        }
     }
 }

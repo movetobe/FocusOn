@@ -14,7 +14,7 @@ struct Utils {
     //static let color = Color.orange.opacity(0.8)
     //static let color = Color(red: 0.2, green: 0.6, blue: 1.0)
     static let color = Color.black.opacity(0.8)
-    static let colorBase = Color.gray.opacity(0.2)
+    static let colorBase = Color.gray.opacity(0.3)
     static let circleR = 100.0
     static let rectH = 60.0
     static let rectW = 110.0

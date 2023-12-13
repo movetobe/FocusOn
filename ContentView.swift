@@ -14,6 +14,7 @@ struct ContentView: View {
                     }
 
                     Button("Quit FocusOn") {
+                        saveAppData(userData: userData)
                         NSApplication.shared.terminate(self)
                     }
                 }
@@ -53,7 +54,21 @@ struct ContentView: View {
             HelpView(isShowHelpView: $isShowHelpView)
         }
     }
-    
+
+    private func saveAppData(userData: UserData) {
+        guard let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("appData.json") else { return }
+        let dataToSave = AppData(totalCountdownSeconds: $userData.totalCountdownSeconds.wrappedValue,
+                                 selectedTime: $userData.selectedTime.wrappedValue,
+                                 selectedTarget: $userData.selectedTarget.wrappedValue,
+                                 currState: $userData.currState.wrappedValue,
+                                 countdownSeconds: $userData.countdownSeconds.wrappedValue,
+                                 todoItems: $userData.todoItems.wrappedValue,
+                                 showFocusOn: $userData.showFocusOn.wrappedValue,
+                                 showTodoList: $userData.showTodoList.wrappedValue,
+                                 totalCountdownEnd: $userData.totalCountdownEnd.wrappedValue)
+        AppDataStore.shared.saveData(dataToSave, to: fileURL)
+    }
+
     private func updateTodayDate() {
         let currentDate = Date()
         let dateFormatter = DateFormatter()

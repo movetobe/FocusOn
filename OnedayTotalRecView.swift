@@ -28,6 +28,7 @@ struct OnedayTotalRecView: View {
                         .frame(width: Utils.rectW, height: Utils.rectH)
                         .border(Utils.colorBase, width: Utils.lineWidth)
                         .foregroundColor(Color.clear)
+                        .cornerRadius(Utils.cornerR / 3)
                         .overlay {
                             VStack {
                                 if currState != Utils.reset {
@@ -45,9 +46,9 @@ struct OnedayTotalRecView: View {
                         }
                     Rectangle()
                         .frame(width: Utils.markerWidth * 2, height: Utils.markerHeight * 4)
-                        .border(Utils.colorBase, width: Utils.lineWidth)
-                        .cornerRadius(Utils.cornerR / 2)
-                        .foregroundColor(Color.clear)
+                        //.border(Utils.colorBase, width: Utils.lineWidth)
+                        .cornerRadius(Utils.cornerR / 3)
+                        .foregroundColor(Utils.colorBase)
                 }
             }
             
