@@ -37,16 +37,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             button.action = #selector(togglePopover(_:))
         }
 
+        NSApp.windows.first?.orderOut(nil)
+        NSApp.setActivationPolicy(.accessory)
+
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) { _, _ in }
+
         // try to load data
         loadAppData(userData: userData)
         // if state is running in last quit, current state shall be set to pause
         if userData.currState == Utils.running {
             userData.currState = Utils.paused
         }
-        NSApp.windows.first?.orderOut(nil)
-        NSApp.setActivationPolicy(.accessory)
-
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) { _, _ in
+        // if today over, reset totalCountdownSeconds
+        if (todayOver()) {
+            userData.totalCountdownSeconds = 0
         }
     }
 
