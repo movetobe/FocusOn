@@ -50,6 +50,7 @@ struct ContentView: View {
 
         }
         .padding(Utils.paddingSize)
+        .background(Utils.colorBGAll)
         .popover(isPresented: $isShowHelpView, arrowEdge: .leading) {
             HelpView(isShowHelpView: $isShowHelpView)
         }

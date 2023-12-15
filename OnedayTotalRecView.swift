@@ -13,13 +13,13 @@ struct OnedayTotalRecView: View {
                     Rectangle()
                     //.frame(width: 78, height: (Double(totalCountdownSeconds) * Utils.rectH) / Double(selectedTimeInSeconds()))
                         .frame(width: (Double(totalCountdownSeconds) * (Utils.rectW - 2 * Utils.lineWidth)) / Double(selectedTimeInSeconds()), height: Utils.rectH - 2 * Utils.lineWidth)
-                        .foregroundColor(Utils.color.opacity(0.5))
+                        .foregroundColor(Utils.colorBase)
                         .offset(x: Utils.lineWidth)
                 } else {
                     Rectangle()
                     //.frame(width: 78, height: (Double(totalCountdownSeconds) * Utils.rectH) / Double(selectedTimeInSeconds()))
                         .frame(width: Utils.rectW - 2 * Utils.lineWidth, height: Utils.rectH - 2 * Utils.lineWidth)
-                        .foregroundColor(Utils.color.opacity(0.5))
+                        .foregroundColor(Utils.colorBase)
                         .offset(x: Utils.lineWidth)
                 }
                 HStack(spacing: -Utils.lineWidth) {

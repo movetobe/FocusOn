@@ -56,9 +56,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func showNotification() {
         let content = UNMutableNotificationContent()
-        content.title = "FocusOnTodoList"
+        content.title = "FocusOn"
         content.body = "Focus On " + String(userData.selectedTime) + " Minutes"
-        content.sound = UNNotificationSound.default
 
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
         let request = UNNotificationRequest(identifier: "FocusOnNotificationIdentifier", content: content, trigger: trigger)
@@ -77,6 +76,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc func togglePopover(_ sender: AnyObject) {
+        saveAppData(userData: userData)
         if popover.isShown {
             closePopover(sender)
         } else {
@@ -100,6 +100,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     private func todayOver() -> Bool {
         return (Date() > userData.totalCountdownEnd) ? true : false
+    }
+
+    private func saveAppData(userData: UserData) {
+        guard let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("appData.json") else { return }
+        let dataToSave = AppData(totalCountdownSeconds: $userData.totalCountdownSeconds.wrappedValue,
+                                 selectedTime: $userData.selectedTime.wrappedValue,
+                                 selectedTarget: $userData.selectedTarget.wrappedValue,
+                                 currState: $userData.currState.wrappedValue,
+                                 countdownSeconds: $userData.countdownSeconds.wrappedValue,
+                                 todoItems: $userData.todoItems.wrappedValue,
+                                 showFocusOn: $userData.showFocusOn.wrappedValue,
+                                 showTodoList: $userData.showTodoList.wrappedValue,
+                                 totalCountdownEnd: $userData.totalCountdownEnd.wrappedValue)
+        AppDataStore.shared.saveData(dataToSave, to: fileURL)
     }
 
     private func loadAppData(userData: UserData) {

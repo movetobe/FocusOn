@@ -10,7 +10,8 @@ struct Utils {
     static let lineWidth: CGFloat = 2.0
     static let fontSize: CGFloat = 14
     static let imageSize: CGFloat = 13
-    static let colorBG = Color.white.opacity(0.2)
+    static let colorBGAll = Color.white.opacity(0.8)
+    static let colorBG = Color(red: 0.2, green: 0.6, blue: 1.0).opacity(0.05)
     //static let color = Color.orange.opacity(0.8)
     //static let color = Color(red: 0.2, green: 0.6, blue: 1.0)
     static let color = Color.black.opacity(0.8)
