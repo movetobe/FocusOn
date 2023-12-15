@@ -26,11 +26,19 @@ struct TodoListView: View {
                     .buttonStyle(.borderless)
                     
                     if (!todoItem.isEditing) {
-                        Text(todoItem.task)
-                            .strikethrough(todoItem.isCompleted)
-                            .onTapGesture (count: 2) {
-                                editTask(index: index)
-                            }
+                        if (!todoItem.isCompleted) {
+                            Text(todoItem.task)
+                                .onTapGesture (count: 2) {
+                                    editTask(index: index)
+                                }
+                        } else {
+                            Text(todoItem.task)
+                                .strikethrough(todoItem.isCompleted, color: Color.gray)
+                                .foregroundColor(Color.gray)
+                                .onTapGesture (count: 2) {
+                                    editTask(index: index)
+                                }
+                        }
                     } else {
                         TextField("Edit Task", text: Binding(
                             get: { return todoItems[index].task },

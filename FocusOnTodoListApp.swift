@@ -30,7 +30,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
-        
+
         if let button = statusItem.button {
             button.image = NSImage(named: "Image")
             button.image?.isTemplate = true
