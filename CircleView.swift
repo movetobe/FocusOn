@@ -7,7 +7,6 @@ struct CircleDividerView: View {
     @Binding var totalCountdownEnd: Date
     @Binding var selectedTarget: Int
     @Binding var countdownSeconds: Int
-    @State private var showAlert = false
     
     var body: some View {
         ZStack {
@@ -79,24 +78,6 @@ struct CircleDividerView: View {
             }
         }
         .frame(width: Utils.circleR, height: Utils.circleR)
-        .alert(isPresented: $showAlert) {
-            Alert(
-                title: Text("Focus Finish"),
-                message: Text("Congratulations on completing a focus"),
-                primaryButton: .default(
-                    Text("Take a break"),
-                    action: {
-                        showAlert = false
-                    }
-                ),
-                secondaryButton: .default(
-                    Text("Start Next Focus"),
-                    action: {
-                        startCountdown()
-                    }
-                )
-            )
-        }
     }
 
     private func positionForNow(i: Int) -> CGPoint {
@@ -130,7 +111,6 @@ struct CircleDividerView: View {
                     } else {
                         timer.invalidate()
                         resetCountdown()
-                        showAlert = true
                         AppDelegate().showNotification()
                     }
                 } else {
