@@ -1,4 +1,5 @@
 import SwiftUI
+import UserNotifications
 
 struct CircleDividerView: View {
     @Binding var currState: Int
@@ -111,7 +112,7 @@ struct CircleDividerView: View {
                     } else {
                         timer.invalidate()
                         resetCountdown()
-                        AppDelegate().showNotification()
+                        AppDelegate.shared.showNotification(selectedTime: selectedTime)
                     }
                 } else {
                     timer.invalidate()

@@ -23,7 +23,8 @@ class UserData: ObservableObject {
     @Published var totalCountdownEnd = Date()
 }
 
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDelegate {
+    static let shared = AppDelegate()
     var popover = NSPopover()
     var statusItem: NSStatusItem!
     @ObservedObject private var userData = UserData()
@@ -40,8 +41,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.windows.first?.orderOut(nil)
         NSApp.setActivationPolicy(.accessory)
 
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert]) { _, _ in }
-
         // try to load data
         loadAppData(userData: userData)
         // if state is running in last quit, current state shall be set to pause
@@ -52,21 +51,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if (todayOver()) {
             userData.totalCountdownSeconds = 0
         }
-    }
 
-    func showNotification() {
-        let content = UNMutableNotificationContent()
-        content.title = "FocusOn"
-        content.body = "Focus On " + String(userData.selectedTime) + " Minutes"
-
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-        let request = UNNotificationRequest(identifier: "FocusOnNotificationIdentifier", content: content, trigger: trigger)
-
-        UNUserNotificationCenter.current().add(request) { error in
-            if let error = error {
-                print("Notification Error: \(error)")
-            }
-        }
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in }
+        UNUserNotificationCenter.current().delegate = AppDelegate.shared
     }
 
     func applicationDidBecomeActive(_ notification: Notification) {
@@ -97,7 +84,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func closePopover(_ sender: AnyObject) {
         popover.performClose(sender)
     }
-    
+
     private func todayOver() -> Bool {
         return (Date() > userData.totalCountdownEnd) ? true : false
     }
@@ -130,5 +117,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             userData.showTodoList = loadedData.showTodoList
             userData.totalCountdownEnd = loadedData.totalCountdownEnd
         }
+    }
+
+    func showNotification(selectedTime: Int) {
+        let content = UNMutableNotificationContent()
+        content.title = "FocusOn"
+        content.body = "Focus On " + String(selectedTime) + " Minutes"
+        content.sound = .default
+
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+
+        UNUserNotificationCenter.current().add(request) { error in }
     }
 }
