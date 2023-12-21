@@ -26,6 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     static let shared = AppDelegate()
     var popover = NSPopover()
     var statusItem: NSStatusItem!
+    var eventMonitor: AnyObject?
     @ObservedObject private var userData = UserData()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -51,6 +52,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             userData.totalCountdownSeconds = 0
         }
         NotificationManager.shared.requestNotificationPermission()
+
+        eventMonitor = NSEvent.addGlobalMonitorForEvents(matching: .leftMouseDown, handler: { [weak self] (event: NSEvent) in
+            self?.handleGlobalClick(event: event)
+        }) as AnyObject?
+    }
+
+    func applicationWillTerminate(_ aNotification: Notification) {
+        if let eventMonitor = eventMonitor {
+            NSEvent.removeMonitor(eventMonitor)
+            self.eventMonitor = nil
+        }
+    }
+
+    func handleGlobalClick(event: NSEvent) {
+        if popover.isShown {
+            let clickLocation = event.locationInWindow
+            if let contentView = popover.contentViewController?.view {
+                let clickLocationRelativeToPopover = contentView.convert(clickLocation, from: nil)
+                if !contentView.bounds.contains(clickLocationRelativeToPopover) {
+                    popover.performClose(nil)
+                }
+            }
+        }
     }
 
     func applicationDidBecomeActive(_ notification: Notification) {
