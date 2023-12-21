@@ -112,7 +112,7 @@ struct CircleDividerView: View {
                     } else {
                         timer.invalidate()
                         resetCountdown()
-                        AppDelegate.shared.showNotification(selectedTime: selectedTime)
+                        NotificationManager.shared.showNotification(selectedTime: selectedTime)
                     }
                 } else {
                     timer.invalidate()

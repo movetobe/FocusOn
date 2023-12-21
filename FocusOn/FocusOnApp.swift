@@ -1,5 +1,4 @@
 import SwiftUI
-import UserNotifications
 
 @main
 struct YourAppNameApp: App {
@@ -23,7 +22,7 @@ class UserData: ObservableObject {
     @Published var totalCountdownEnd = Date()
 }
 
-class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate {
     static let shared = AppDelegate()
     var popover = NSPopover()
     var statusItem: NSStatusItem!
@@ -51,9 +50,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
         if (todayOver()) {
             userData.totalCountdownSeconds = 0
         }
-
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in }
-        UNUserNotificationCenter.current().delegate = AppDelegate.shared
+        NotificationManager.shared.requestNotificationPermission()
     }
 
     func applicationDidBecomeActive(_ notification: Notification) {
@@ -117,17 +114,5 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
             userData.showTodoList = loadedData.showTodoList
             userData.totalCountdownEnd = loadedData.totalCountdownEnd
         }
-    }
-
-    func showNotification(selectedTime: Int) {
-        let content = UNMutableNotificationContent()
-        content.title = "FocusOn"
-        content.body = "Focus On " + String(selectedTime) + " Minutes"
-        content.sound = .default
-
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-
-        UNUserNotificationCenter.current().add(request) { error in }
     }
 }

@@ -17,6 +17,7 @@
 		E56800C52B31DC8000F09DB0 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56800BE2B31DC8000F09DB0 /* AppData.swift */; };
 		E56800C62B31DC8000F09DB0 /* OnedayTotalRecView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56800BF2B31DC8000F09DB0 /* OnedayTotalRecView.swift */; };
 		E56800C72B31DC8000F09DB0 /* TodoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56800C02B31DC8000F09DB0 /* TodoListView.swift */; };
+		E56800C92B31E20F00F09DB0 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56800C82B31E20F00F09DB0 /* NotificationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		E56800BE2B31DC8000F09DB0 /* AppData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		E56800BF2B31DC8000F09DB0 /* OnedayTotalRecView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnedayTotalRecView.swift; sourceTree = "<group>"; };
 		E56800C02B31DC8000F09DB0 /* TodoListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoListView.swift; sourceTree = "<group>"; };
+		E56800C82B31E20F00F09DB0 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 				E56800AF2B31DB9D00F09DB0 /* Assets.xcassets */,
 				E56800B42B31DB9D00F09DB0 /* FocusOn.entitlements */,
 				E56800B12B31DB9D00F09DB0 /* Preview Content */,
+				E56800C82B31E20F00F09DB0 /* NotificationManager.swift */,
 			);
 			path = FocusOn;
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 				E56800C32B31DC8000F09DB0 /* Utils.swift in Sources */,
 				E56800C42B31DC8000F09DB0 /* HelpView.swift in Sources */,
 				E56800C22B31DC8000F09DB0 /* CircleView.swift in Sources */,
+				E56800C92B31E20F00F09DB0 /* NotificationManager.swift in Sources */,
 				E56800C62B31DC8000F09DB0 /* OnedayTotalRecView.swift in Sources */,
 				E56800C72B31DC8000F09DB0 /* TodoListView.swift in Sources */,
 				E56800AE2B31DB9B00F09DB0 /* ContentView.swift in Sources */,

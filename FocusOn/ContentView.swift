@@ -9,6 +9,13 @@ struct ContentView: View {
         VStack {
             HStack {
                 MenuButton(label: Image(systemName: "gearshape")) {
+                    /*
+                    Button("Set Notification") {
+                        if let url = URL(string: "x-apple.systempreferences:com.apple.preference.notifications") {
+                            NSWorkspace.shared.open(url)
+                        }
+                    }
+                     */
                     Button("About FocusOn") {
                         isShowHelpView.toggle()
                     }

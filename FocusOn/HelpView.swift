@@ -1,10 +1,3 @@
-//
-//  HelpView.swift
-//  FocusOnTodoList
-//
-//  Created by wenjian on 2023/12/11.
-//
-
 import SwiftUI
 
 struct HelpView: View {
