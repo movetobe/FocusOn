@@ -51,7 +51,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if (todayOver()) {
             userData.totalCountdownSeconds = 0
         }
-        NotificationManager.shared.requestNotificationPermission()
 
         eventMonitor = NSEvent.addGlobalMonitorForEvents(matching: .leftMouseDown, handler: { [weak self] (event: NSEvent) in
             self?.handleGlobalClick(event: event)

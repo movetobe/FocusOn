@@ -1,23 +1,17 @@
 import Foundation
-import UserNotifications
+import AppKit
 
 class NotificationManager: ObservableObject {
     static let shared = NotificationManager()
 
-    func requestNotificationPermission() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge, .criticalAlert, .providesAppNotificationSettings, .provisional]) { granted, error in }
-    }
-
     func showNotification(selectedTime: Int) {
-        let content = UNMutableNotificationContent()
-        content.title = "FocusOn"
-        content.body = "Focus On " + String(selectedTime) + " Minutes"
-        content.sound = .default
+        let alert = NSAlert()
+        alert.messageText = "FocusOn"
+        alert.informativeText = "Focus On \(selectedTime) Minutes"
+        alert.addButton(withTitle: "OK")
 
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-
-        UNUserNotificationCenter.current().add(request) { error in }
+        let response = alert.runModal()
+        if response == NSApplication.ModalResponse.alertFirstButtonReturn { }
     }
 }
 
