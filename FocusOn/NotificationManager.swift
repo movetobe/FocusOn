@@ -10,8 +10,10 @@ class NotificationManager: ObservableObject {
         alert.informativeText = "Focus On \(selectedTime) Minutes"
         alert.addButton(withTitle: "OK")
 
-        let response = alert.runModal()
-        if response == NSApplication.ModalResponse.alertFirstButtonReturn { }
+        DispatchQueue.main.asyncAfter(deadline: .now() + Utils.notificationTime) {
+            NSApp.stopModal()
+        }
+        alert.runModal()
     }
 }
 

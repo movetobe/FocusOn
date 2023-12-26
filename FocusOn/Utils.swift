@@ -27,4 +27,5 @@ struct Utils {
     static let cornerR = 10.0
     static let appName = "FocusOn"
     static let version = " Version 0.0.1"
+    static let notificationTime = 5.0
 }
