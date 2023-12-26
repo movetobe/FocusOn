@@ -40,6 +40,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         NSApp.windows.first?.orderOut(nil)
         NSApp.setActivationPolicy(.accessory)
+        NSApp.activate(ignoringOtherApps: true)
 
         // try to load data
         loadAppData(userData: userData)
@@ -97,6 +98,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 userData.totalCountdownSeconds = 0
             }
             popover.contentViewController = NSHostingController(rootView: ContentView().environmentObject(userData))
+            NSApplication.shared.activate(ignoringOtherApps: true)
             popover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
         }
     }
