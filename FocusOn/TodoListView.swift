@@ -83,6 +83,9 @@ struct TodoListView: View {
         guard !newTask.isEmpty else { return }
         let todoItem = TodoItem(task: newTask)
         todoItems.append(todoItem)
+        DispatchQueue.main.async {
+            self.newTask = ""
+        }
         newTask = ""
     }
 
