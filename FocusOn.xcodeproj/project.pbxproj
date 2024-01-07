@@ -11,13 +11,13 @@
 		E56800AE2B31DB9B00F09DB0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56800AD2B31DB9B00F09DB0 /* ContentView.swift */; };
 		E56800B02B31DB9D00F09DB0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E56800AF2B31DB9D00F09DB0 /* Assets.xcassets */; };
 		E56800B32B31DB9D00F09DB0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E56800B22B31DB9D00F09DB0 /* Preview Assets.xcassets */; };
-		E56800C22B31DC8000F09DB0 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56800BB2B31DC8000F09DB0 /* CircleView.swift */; };
 		E56800C32B31DC8000F09DB0 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56800BC2B31DC8000F09DB0 /* Utils.swift */; };
 		E56800C42B31DC8000F09DB0 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56800BD2B31DC8000F09DB0 /* HelpView.swift */; };
 		E56800C52B31DC8000F09DB0 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56800BE2B31DC8000F09DB0 /* AppData.swift */; };
-		E56800C62B31DC8000F09DB0 /* OnedayTotalRecView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56800BF2B31DC8000F09DB0 /* OnedayTotalRecView.swift */; };
 		E56800C72B31DC8000F09DB0 /* TodoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56800C02B31DC8000F09DB0 /* TodoListView.swift */; };
 		E56800C92B31E20F00F09DB0 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56800C82B31E20F00F09DB0 /* NotificationManager.swift */; };
+		E56F4C042B45BEA4001B2B5B /* FocusOnProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56F4C032B45BEA4001B2B5B /* FocusOnProgressView.swift */; };
+		E56F4C062B4AB970001B2B5B /* CustomCircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56F4C052B4AB970001B2B5B /* CustomCircleProgressView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,13 +27,13 @@
 		E56800AF2B31DB9D00F09DB0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E56800B22B31DB9D00F09DB0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E56800B42B31DB9D00F09DB0 /* FocusOn.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FocusOn.entitlements; sourceTree = "<group>"; };
-		E56800BB2B31DC8000F09DB0 /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		E56800BC2B31DC8000F09DB0 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		E56800BD2B31DC8000F09DB0 /* HelpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		E56800BE2B31DC8000F09DB0 /* AppData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
-		E56800BF2B31DC8000F09DB0 /* OnedayTotalRecView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnedayTotalRecView.swift; sourceTree = "<group>"; };
 		E56800C02B31DC8000F09DB0 /* TodoListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoListView.swift; sourceTree = "<group>"; };
 		E56800C82B31E20F00F09DB0 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		E56F4C032B45BEA4001B2B5B /* FocusOnProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusOnProgressView.swift; sourceTree = "<group>"; };
+		E56F4C052B4AB970001B2B5B /* CustomCircleProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCircleProgressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,9 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				E56800BE2B31DC8000F09DB0 /* AppData.swift */,
-				E56800BB2B31DC8000F09DB0 /* CircleView.swift */,
 				E56800BD2B31DC8000F09DB0 /* HelpView.swift */,
-				E56800BF2B31DC8000F09DB0 /* OnedayTotalRecView.swift */,
 				E56800C02B31DC8000F09DB0 /* TodoListView.swift */,
 				E56800BC2B31DC8000F09DB0 /* Utils.swift */,
 				E56800AB2B31DB9B00F09DB0 /* FocusOnApp.swift */,
@@ -78,6 +76,8 @@
 				E56800B42B31DB9D00F09DB0 /* FocusOn.entitlements */,
 				E56800B12B31DB9D00F09DB0 /* Preview Content */,
 				E56800C82B31E20F00F09DB0 /* NotificationManager.swift */,
+				E56F4C032B45BEA4001B2B5B /* FocusOnProgressView.swift */,
+				E56F4C052B4AB970001B2B5B /* CustomCircleProgressView.swift */,
 			);
 			path = FocusOn;
 			sourceTree = "<group>";
@@ -162,12 +162,12 @@
 			files = (
 				E56800C32B31DC8000F09DB0 /* Utils.swift in Sources */,
 				E56800C42B31DC8000F09DB0 /* HelpView.swift in Sources */,
-				E56800C22B31DC8000F09DB0 /* CircleView.swift in Sources */,
 				E56800C92B31E20F00F09DB0 /* NotificationManager.swift in Sources */,
-				E56800C62B31DC8000F09DB0 /* OnedayTotalRecView.swift in Sources */,
 				E56800C72B31DC8000F09DB0 /* TodoListView.swift in Sources */,
+				E56F4C042B45BEA4001B2B5B /* FocusOnProgressView.swift in Sources */,
 				E56800AE2B31DB9B00F09DB0 /* ContentView.swift in Sources */,
 				E56800AC2B31DB9B00F09DB0 /* FocusOnApp.swift in Sources */,
+				E56F4C062B4AB970001B2B5B /* CustomCircleProgressView.swift in Sources */,
 				E56800C52B31DC8000F09DB0 /* AppData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

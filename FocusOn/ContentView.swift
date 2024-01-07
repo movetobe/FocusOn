@@ -9,13 +9,6 @@ struct ContentView: View {
         VStack {
             HStack {
                 MenuButton(label: Image(systemName: "gearshape")) {
-                    /*
-                    Button("Set Notification") {
-                        if let url = URL(string: "x-apple.systempreferences:com.apple.preference.notifications") {
-                            NSWorkspace.shared.open(url)
-                        }
-                    }
-                     */
                     Button("About FocusOn") {
                         isShowHelpView.toggle()
                     }
@@ -39,22 +32,15 @@ struct ContentView: View {
             .onAppear {
                 updateTodayDate()
             }
-            HStack(alignment: .bottom) {
-                CircleDividerView(currState: $userData.currState, selectedTime: $userData.selectedTime, totalCountdownSeconds: $userData.totalCountdownSeconds, totalCountdownEnd: $userData.totalCountdownEnd, selectedTarget: $userData.selectedTarget, countdownSeconds: $userData.countdownSeconds)
-                    .frame(width: Utils.circleR, height: Utils.circleR)
-                Spacer()
-                OnedayTotalRecView(currState: $userData.currState, totalCountdownSeconds: $userData.totalCountdownSeconds, selectedTarget: $userData.selectedTarget)
-                    .frame(width: Utils.rectW, height: Utils.circleR)
-            }
-            .padding(Utils.paddingSize)
-            .background(Utils.colorBG)
-            .cornerRadius(Utils.cornerR)
-            
+            FocusOnProgressView(currState: $userData.currState, selectedTime: $userData.selectedTime, totalCountdownSeconds: $userData.totalCountdownSeconds, totalCountdownEnd: $userData.totalCountdownEnd, selectedTarget: $userData.selectedTarget, countdownSeconds: $userData.countdownSeconds)
+                .background(Utils.colorBG)
+                .cornerRadius(Utils.cornerR)
+                .frame(width: Utils.contentW)
+
             TodoListView(todoItems: $userData.todoItems)
                 .background(Utils.colorBG)
                 .cornerRadius(Utils.cornerR)
-                .frame(width: Utils.circleR + Utils.rectW + Utils.paddingSize * 4)
-
+                .frame(width: Utils.contentW)
         }
         .padding(Utils.paddingSize)
         .background(Utils.colorBGAll)
