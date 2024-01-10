@@ -4,11 +4,15 @@ struct ContentView: View {
     @EnvironmentObject var userData: UserData
     @State private var todayDate: String = ""
     @State private var isShowHelpView = false
+    @State private var showAllTasks = false
 
     var body: some View {
         VStack {
             HStack {
                 MenuButton(label: Image(systemName: "gearshape")) {
+                    Button("Show All Tasks") {
+                        showAllTasks.toggle()
+                    }
                     Button("About FocusOn") {
                         isShowHelpView.toggle()
                     }
@@ -47,10 +51,16 @@ struct ContentView: View {
         .popover(isPresented: $isShowHelpView, arrowEdge: .leading) {
             HelpView(isShowHelpView: $isShowHelpView)
         }
+        .popover(isPresented: $showAllTasks, arrowEdge: .leading) {
+            ScrollView {
+                Text((TaskFileManager.shared.readFromFile() ?? "NO TASKS"))
+            }
+            .padding(Utils.paddingSize)
+        }
     }
 
     private func saveAppData(userData: UserData) {
-        guard let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("appData.json") else { return }
+        guard let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent(Utils.appDataJson) else { return }
         let dataToSave = AppData(totalCountdownSeconds: $userData.totalCountdownSeconds.wrappedValue,
                                  selectedTime: $userData.selectedTime.wrappedValue,
                                  selectedTarget: $userData.selectedTarget.wrappedValue,

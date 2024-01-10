@@ -1,8 +1,12 @@
 import SwiftUI
+import Foundation
 
 struct TodoItem: Identifiable,Codable {
     var id = UUID()
     var task: String
+    var createdDate: Date
+    var completedDate: Date?
+    var deletedDate: Date?
     var isCompleted: Bool = false
     var isEditing: Bool = false
 }
@@ -68,6 +72,9 @@ struct TodoListView: View {
     func toggleTaskCompletion(todoItem: TodoItem) {
         if let index = todoItems.firstIndex(where: { $0.id == todoItem.id }) {
             todoItems[index].isCompleted.toggle()
+            if (todoItems[index].isCompleted) {
+                todoItems[index].completedDate = Date()
+            }
         }
     }
     
@@ -81,7 +88,7 @@ struct TodoListView: View {
 
     func addTask() {
         guard !newTask.isEmpty else { return }
-        let todoItem = TodoItem(task: newTask)
+        let todoItem = TodoItem(task: newTask, createdDate: Date(), completedDate: nil, deletedDate: nil)
         todoItems.append(todoItem)
         DispatchQueue.main.async {
             self.newTask = ""
@@ -90,6 +97,29 @@ struct TodoListView: View {
     }
 
     func deleteTask(index: Int) {
+        todoItems[index].deletedDate = Date()
+        if (!todoItems[index].isCompleted) {
+            todoItems[index].completedDate = Date()
+        }
+        saveDeletedTaskToFile(todoItem: todoItems[index])
         todoItems.remove(at: index)
+    }
+
+    func saveDeletedTaskToFile(todoItem: TodoItem) {
+        var writeString: String = ""
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+
+        let createdDate = String(format: "%@ ", dateFormatter.string(from: todoItem.createdDate))
+        let completedDate = String(format: " %@ ", dateFormatter.string(from: todoItem.completedDate!))
+        let deletedDate = String(format: " %@ ", dateFormatter.string(from: todoItem.deletedDate!))
+        let task = String(format: " %@\n", todoItem.task)
+
+        writeString.append(createdDate)
+        writeString.append(completedDate)
+        writeString.append(deletedDate)
+        writeString.append(task)
+
+        TaskFileManager.shared.writeToFile(message: writeString)
     }
 }

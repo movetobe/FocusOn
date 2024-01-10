@@ -20,6 +20,8 @@ struct Utils {
     static let progressOffet = 12.0
     static let sliceSize = 0.42
     static let cornerR = 10.0
+    static let appDataJson = "FocusOnAppData.json"
+    static let taskFile = "FocusOnTask.log"
     static let appName = "FocusOn"
     static let version = " Version 0.1.0"
     static let notificationTime = 5.0

@@ -112,7 +112,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func saveAppData(userData: UserData) {
-        guard let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("appData.json") else { return }
+        guard let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent(Utils.appDataJson) else { return }
         let dataToSave = AppData(totalCountdownSeconds: $userData.totalCountdownSeconds.wrappedValue,
                                  selectedTime: $userData.selectedTime.wrappedValue,
                                  selectedTarget: $userData.selectedTarget.wrappedValue,
@@ -126,7 +126,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func loadAppData(userData: UserData) {
-        guard let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("appData.json") else { return }
+        guard let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent(Utils.appDataJson) else { return }
 
         if let loadedData = AppDataStore.shared.loadData(from: fileURL) {
             userData.totalCountdownSeconds = loadedData.totalCountdownSeconds
