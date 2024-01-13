@@ -63,8 +63,13 @@ struct FocusOnProgressView: View {
             }
             Spacer()
             ZStack {
-                CustomCircleProgressView(Double(totalCountdownSeconds) / Double(selectedTargetInSeconds()))
-                    .frame(width: Utils.dayProgressR, height: Utils.dayProgressR)
+                if (Double(totalCountdownSeconds) > Double(selectedTargetInSeconds())) {
+                    CustomCircleProgressView(1.0)
+                        .frame(width: Utils.dayProgressR, height: Utils.dayProgressR)
+                } else {
+                    CustomCircleProgressView(Double(totalCountdownSeconds) / Double(selectedTargetInSeconds()))
+                        .frame(width: Utils.dayProgressR, height: Utils.dayProgressR)
+                }
                 VStack {
                     if currState != Utils.reset {
                         //Text("Daily Goal")
