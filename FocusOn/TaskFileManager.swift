@@ -18,27 +18,22 @@ class TaskFileManager {
 
         do {
             self.fileHandle = try FileHandle(forUpdating: fileURL)
-
-            if (self.newCreate) {
-                let taskFileHdr = "Created    " + "  Completed  " + " Deleted    " + " Task\n"
-                if let taskFileHdrData = taskFileHdr.data(using: .utf8) {
-                    self.fileHandle?.write(taskFileHdrData)
-                } else {
-                    print("Error converting task file header to data.")
-                }
-            }
         } catch {
             print("Error opening file for updating: \(error)")
         }
     }
 
     func writeToFile(message: String) {
-        guard let fileHandle = fileHandle, let data = "\(message)\n".data(using: .utf8) else {
-            return
+        DispatchQueue.main.async { [self] in
+            guard let fileHandle = self.fileHandle else {
+                return
+            }
+            /* read original data */
+            let originalData = self.readFromFile()
+            let data = message + (originalData ?? "")
+            fileHandle.seek(toFileOffset: 0)
+            fileHandle.write(data.data(using: .utf8)!)
         }
-
-        fileHandle.seekToEndOfFile()
-        fileHandle.write(data)
     }
 
     func readFromFile() -> String? {

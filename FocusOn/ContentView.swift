@@ -53,7 +53,9 @@ struct ContentView: View {
         }
         .popover(isPresented: $showAllTasks, arrowEdge: .leading) {
             ScrollView {
-                Text((TaskFileManager.shared.readFromFile() ?? "NO TASKS"))
+                let showHdr = "Created     " + "  Completed  " + " Deleted     " + " Task\n"
+                let showText = showHdr + (TaskFileManager.shared.readFromFile() ?? "NO TASKS")
+                Text(showText)
             }
             .padding(Utils.paddingSize)
         }
