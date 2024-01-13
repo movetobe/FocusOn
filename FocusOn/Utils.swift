@@ -23,6 +23,6 @@ struct Utils {
     static let appDataJson = "FocusOnAppData.json"
     static let taskFile = "FocusOnTask.data"
     static let appName = "FocusOn"
-    static let version = " Version 1.0.0"
+    static let version = " Version 1.0.1"
     static let notificationTime = 5.0
 }
